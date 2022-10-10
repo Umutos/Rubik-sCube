@@ -1,0 +1,34 @@
+{
+    "name": "Rotation",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "6f14d9d0-5111-45ed-91fd-5ae44bcffa0f",
+            "actions": [
+                {
+                    "name": "Rotation",
+                    "type": "Button",
+                    "id": "bb101f90-c1c5-4c96-b54b-d1c697cdc035",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c0f312fc-be4a-4ced-b403-ec4ef21052b5",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
