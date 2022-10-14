@@ -48,7 +48,7 @@ public class RubiksCubeCreator : MonoBehaviour
             {
                 for (int k = 0; k < length; k++)
                 {
-                    GameObject c = Instantiate(cube, new Vector3(i * 2 - length / 2, j * 2 - length / 2, k * 2 - length / 2), rotation);
+                    GameObject c = Instantiate(cube, new Vector3((i - length / 2f ) * 2, (j - length / 2f) * 2, (k - length / 2f) * 2), rotation);
                     //c.transform.localScale = new Vector3(3f / length, 3f / length, 3f / length);
                     c.transform.parent = center.transform;
                     rubiksCube.Add(c);
