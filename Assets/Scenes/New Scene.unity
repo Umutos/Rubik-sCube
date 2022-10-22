@@ -284,6 +284,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cube: {fileID: 2668253029270285919, guid: ed528862068a02c488660b3b93f4d8ae, type: 3}
   center: {fileID: 1170565906}
+  XSlice: {fileID: 2851732804981879262, guid: 9281dfe22777749438ce387a5317a7ef, type: 3}
+  YSlice: {fileID: 5171147259783780131, guid: b07118e1e4d9b2f4ab815ef76156e072, type: 3}
+  ZSlice: {fileID: 4601232263391631438, guid: b4ecde2f9e25f8542a1b0231c8132cc8, type: 3}
   sideLength: 3
 --- !u!1 &2114356220
 GameObject:

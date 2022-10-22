@@ -6,6 +6,9 @@ public class CubesGenerator : MonoBehaviour
 {
     [SerializeField] GameObject cube;
     [SerializeField] GameObject center;
+    [SerializeField] GameObject XSlice;
+    [SerializeField] GameObject YSlice;
+    [SerializeField] GameObject ZSlice;
     List<GameObject> rubiksCube;
     public int sideLength = 3;
     int currentLength;
