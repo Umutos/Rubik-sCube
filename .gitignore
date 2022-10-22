@@ -52,6 +52,14 @@ sysinfo.txt
 *.unitypackage
 *.app
 
+# Meta Files built by Visual Studio
+*.meta
+
+# Unity3D generated meta files
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+
 # Crashlytics generated file
 crashlytics-build.properties
 
