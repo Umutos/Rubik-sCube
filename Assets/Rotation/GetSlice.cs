@@ -19,9 +19,10 @@ public class GetSlice : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        slice.Add(other.gameObject);
-        
-            
+        if (other.gameObject.CompareTag("Cube"))
+        {
+             slice.Add(other.gameObject);
+        }
     }
 
     private void OnTriggerExit(Collider other)
