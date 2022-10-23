@@ -107,21 +107,27 @@ public class CubesGenerator : MonoBehaviour
     void GenerateFaces(int size)
     {
         GameObject face1 = Instantiate(Face, new Vector3(0, size, 0), Quaternion.identity);
+        face1.transform.localScale = new Vector3(size * 2, 1, size * 2);
         face1.transform.parent = center.transform;
         faces.Add(face1);
         GameObject face2 = Instantiate(Face, new Vector3(0, -size, 0), Quaternion.identity);
+        face2.transform.localScale = new Vector3(size * 2, 1, size * 2);
         face2.transform.parent = center.transform;
         faces.Add(face2);
         GameObject face3 = Instantiate(Face, new Vector3(size, 0, 0), Quaternion.AngleAxis(90, Vector3.forward));
+        face3.transform.localScale = new Vector3(size * 2, 1, size * 2);
         face3.transform.parent = center.transform;
         faces.Add(face3);
         GameObject face4 = Instantiate(Face, new Vector3(- size, 0, 0), Quaternion.AngleAxis(90, Vector3.forward));
+        face4.transform.localScale = new Vector3(size * 2, 1, size * 2);
         face4.transform.parent = center.transform;
         faces.Add(face4);
         GameObject face5 = Instantiate(Face, new Vector3(0, 0, size), Quaternion.AngleAxis(90, Vector3.right));
+        face5.transform.localScale = new Vector3(size * 2, 1, size * 2);
         face5.transform.parent = center.transform;
         faces.Add(face5);
         GameObject face6 = Instantiate(Face, new Vector3(0, 0, - size), Quaternion.AngleAxis(90, Vector3.right));
+        face6.transform.localScale = new Vector3(size * 2, 1, size * 2);
         face6.transform.parent = center.transform;
         faces.Add(face6);
     }
