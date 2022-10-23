@@ -13,6 +13,8 @@ public class CubesGenerator : MonoBehaviour
     [SerializeField] GameObject Face;
     [SerializeField] GameObject Camera;
 
+    [SerializeField] CubeSolve solver;
+
     [SerializeField] Slider slider;
     [SerializeField] Text sliderValue;
     [SerializeField] Slider shuffleSlider;
@@ -158,9 +160,15 @@ public class CubesGenerator : MonoBehaviour
             RotateSlice s = slices[i].GetComponent<RotateSlice>();
             int k = Random.Range(0, 2);
             if (k == 0)
+            {
+                solver.AddCubeAction(s, 1);
                 s.SliceRotate(1);
+            }
             else
+            {
+                solver.AddCubeAction(s, -1);
                 s.SliceRotate(-1);
+            }
 
             yield return new WaitUntil(() => s.EndRotation == true);
 
@@ -179,6 +187,7 @@ public class CubesGenerator : MonoBehaviour
 
     public void Restart()
     {
+        solver.ClearActions();
         DeleteCube();
         Generate(currentLength);
         IsRotating = false;
