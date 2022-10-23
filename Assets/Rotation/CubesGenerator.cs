@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CubesGenerator : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class CubesGenerator : MonoBehaviour
     [SerializeField] GameObject YSlice;
     [SerializeField] GameObject ZSlice;
     [SerializeField] GameObject Camera;
+    [SerializeField] Slider slider;
+    [SerializeField] Text sliderValue;
     List<GameObject> rubiksCube;
     List<GameObject> slices;
     public int sideLength = 3;
@@ -39,6 +42,9 @@ public class CubesGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        sideLength = (int)slider.value;
+        sliderValue.text = sideLength.ToString();
+
         if (currentLength != sideLength)
         {
             if (sideLength > 10)
@@ -91,5 +97,17 @@ public class CubesGenerator : MonoBehaviour
 
         rubiksCube.Clear();
         slices.Clear();
+    }
+
+    public void SetLength(int newLength)
+    {
+        sideLength = newLength;
+    }
+
+    public void Shuffle()
+    {
+        int i = Random.Range(0, slices.Count);
+        RotateSlice s = slices[i].GetComponent<RotateSlice>();
+        s.SliceRotate();
     }
 }

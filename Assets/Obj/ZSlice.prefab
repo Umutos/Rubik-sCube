@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4601232263391631424}
   - component: {fileID: 4601232263391631425}
   - component: {fileID: 4601232263391631429}
+  - component: {fileID: 2422294489135186845}
   m_Layer: 0
   m_Name: ZSlice
   m_TagString: Untagged
@@ -42,7 +43,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4601232263391631438}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 0}
 --- !u!23 &4601232263391631424
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -111,3 +112,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slice: []
+--- !u!114 &2422294489135186845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4601232263391631438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55466c36eeb9da141bc67199a75c33bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slice: {fileID: 4601232263391631429}
