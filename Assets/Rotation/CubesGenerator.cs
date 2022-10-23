@@ -15,12 +15,15 @@ public class CubesGenerator : MonoBehaviour
 
     [SerializeField] Slider slider;
     [SerializeField] Text sliderValue;
+    [SerializeField] Slider shuffleSlider;
+    [SerializeField] Text shuffleSliderValue;
 
     List<GameObject> rubiksCube;
     List<GameObject> slices;
     List<GameObject> faces;
 
     public int sideLength = 3;
+    public int shuffleLength = 0;
     int currentLength;
     public bool IsRotating = false;
 
@@ -54,21 +57,21 @@ public class CubesGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        sideLength = (int)slider.value;
-        sliderValue.text = sideLength.ToString();
-
-        if (currentLength != sideLength)
+        if (!IsRotating)
         {
-            if (sideLength > 10)
-                sideLength = 10;
-            if (sideLength < 2)
-                sideLength = 2;
+            sideLength = (int)slider.value;
+            sliderValue.text = sideLength.ToString();
+            shuffleLength = (int)shuffleSlider.value;
+            shuffleSliderValue.text = shuffleLength.ToString();
 
-            currentLength = sideLength;
-            DeleteCube();
-            Generate(currentLength);
+            if (currentLength != sideLength)
+            {
+                currentLength = sideLength;
+                DeleteCube();
+                Generate(currentLength);
 
-            Camera.transform.position = new Vector3(0, 1, -10 - sideLength * 2);
+                Camera.transform.position = new Vector3(0, 1, -10 - sideLength * 2);
+            }
         }
     }
 
@@ -139,13 +142,32 @@ public class CubesGenerator : MonoBehaviour
         faces.Clear();
     }
 
-    public void Shuffle(int rotationSens = 1)
+    IEnumerator ShuffleManager(int numberOfShuffles)
     {
-        if (!IsRotating)
+        IsRotating = true;
+
+        for (int j = 0; j < numberOfShuffles; j++)
         {
             int i = Random.Range(0, slices.Count);
             RotateSlice s = slices[i].GetComponent<RotateSlice>();
-            s.SliceRotate(rotationSens);
+            int k = Random.Range(0, 2);
+            if (k == 0)
+                s.SliceRotate(1);
+            else
+                s.SliceRotate(-1);
+
+            yield return new WaitUntil(() => s.EndRotation == true);
+
+            s.EndRotation = false;
+            yield return null;
         }
+
+        IsRotating = false;
+    }
+
+    public void Shuffle()
+    {
+        if(!IsRotating)
+            StartCoroutine(ShuffleManager(shuffleLength));
     }
 }

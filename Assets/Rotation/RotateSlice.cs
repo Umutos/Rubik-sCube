@@ -5,8 +5,8 @@ using UnityEngine;
 public class RotateSlice : MonoBehaviour
 {
     [SerializeField] GetSlice slice;
-    float rotationSpeed = 100f;
-    Quaternion newRotation = Quaternion.identity;
+
+    public bool EndRotation = false;
     private void Update()
     {
         
@@ -34,7 +34,7 @@ public class RotateSlice : MonoBehaviour
 
         Quaternion newRotation = transform.rotation * Quaternion.AngleAxis(90 * rotationSens, transform.worldToLocalMatrix.MultiplyVector(transform.forward));
 
-        float time = 1f;
+        float time = 0.5f;
         float lapse = 0;
         while (lapse < time)
         {
@@ -45,6 +45,8 @@ public class RotateSlice : MonoBehaviour
         transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, 1);
 
         UnlockCubes();
+
+        EndRotation = true;
     }
 
     public void SliceRotate(int rotationSens = 1)
