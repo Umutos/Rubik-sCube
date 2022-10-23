@@ -181,5 +181,6 @@ public class CubesGenerator : MonoBehaviour
     {
         DeleteCube();
         Generate(currentLength);
+        IsRotating = false;
     }
 }
