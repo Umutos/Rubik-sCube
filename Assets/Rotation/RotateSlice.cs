@@ -28,11 +28,11 @@ public class RotateSlice : MonoBehaviour
         }
     }
 
-    IEnumerator Rotation()
+    IEnumerator Rotation(int rotationSens)
     {
         LockCubes();
 
-        Quaternion newRotation = transform.rotation * Quaternion.AngleAxis(90, transform.worldToLocalMatrix.MultiplyVector(transform.forward));
+        Quaternion newRotation = transform.rotation * Quaternion.AngleAxis(90 * rotationSens, transform.worldToLocalMatrix.MultiplyVector(transform.forward));
 
         float time = 1f;
         float lapse = 0;
@@ -47,8 +47,8 @@ public class RotateSlice : MonoBehaviour
         UnlockCubes();
     }
 
-    public void SliceRotate()
+    public void SliceRotate(int rotationSens = 1)
     {
-        StartCoroutine(Rotation());
+        StartCoroutine(Rotation(rotationSens));
     }
 }

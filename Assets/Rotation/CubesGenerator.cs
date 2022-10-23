@@ -13,10 +13,14 @@ public class CubesGenerator : MonoBehaviour
     [SerializeField] GameObject Camera;
     [SerializeField] Slider slider;
     [SerializeField] Text sliderValue;
+
     List<GameObject> rubiksCube;
     List<GameObject> slices;
+
     public int sideLength = 3;
     int currentLength;
+    public bool IsRotating = false;
+
     Quaternion rotation;
     Quaternion rotationSliceX;
     Quaternion rotationSliceY;
@@ -99,15 +103,13 @@ public class CubesGenerator : MonoBehaviour
         slices.Clear();
     }
 
-    public void SetLength(int newLength)
+    public void Shuffle(int rotationSens = 1)
     {
-        sideLength = newLength;
-    }
-
-    public void Shuffle()
-    {
-        int i = Random.Range(0, slices.Count);
-        RotateSlice s = slices[i].GetComponent<RotateSlice>();
-        s.SliceRotate();
+        if (!IsRotating)
+        {
+            int i = Random.Range(0, slices.Count);
+            RotateSlice s = slices[i].GetComponent<RotateSlice>();
+            s.SliceRotate(rotationSens);
+        }
     }
 }
