@@ -5,14 +5,9 @@ using UnityEngine;
 public class RotateSlice : MonoBehaviour
 {
     [SerializeField] GetSlice slice;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
+    float rotationSpeed = 100f;
+    Quaternion newRotation = Quaternion.identity;
+    private void Update()
     {
         
     }
@@ -33,12 +28,27 @@ public class RotateSlice : MonoBehaviour
         }
     }
 
-    public void SliceRotate()
+    IEnumerator Rotation()
     {
         LockCubes();
 
-        transform.rotation *= Quaternion.AngleAxis(90, transform.worldToLocalMatrix.MultiplyVector(transform.forward));
+        Quaternion newRotation = transform.rotation * Quaternion.AngleAxis(90, transform.worldToLocalMatrix.MultiplyVector(transform.forward));
+
+        float time = 1f;
+        float lapse = 0;
+        while (lapse < time)
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, lapse / time);
+            lapse += Time.deltaTime;
+            yield return null;
+        }
+        transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, 1);
 
         UnlockCubes();
+    }
+
+    public void SliceRotate()
+    {
+        StartCoroutine(Rotation());
     }
 }
