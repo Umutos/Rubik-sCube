@@ -10,12 +10,15 @@ public class CubesGenerator : MonoBehaviour
     [SerializeField] GameObject XSlice;
     [SerializeField] GameObject YSlice;
     [SerializeField] GameObject ZSlice;
+    [SerializeField] GameObject Face;
     [SerializeField] GameObject Camera;
+
     [SerializeField] Slider slider;
     [SerializeField] Text sliderValue;
 
     List<GameObject> rubiksCube;
     List<GameObject> slices;
+    List<GameObject> faces;
 
     public int sideLength = 3;
     int currentLength;
@@ -33,13 +36,18 @@ public class CubesGenerator : MonoBehaviour
         rotationSliceX = Quaternion.AngleAxis(0, Vector3.up);
         rotationSliceY = Quaternion.AngleAxis(90, Vector3.right);
         rotationSliceZ = Quaternion.AngleAxis(90, Vector3.up);
+
         rubiksCube = new List<GameObject>();
         slices = new List<GameObject>();
+        faces = new List<GameObject>();
+
         if (sideLength > 10)
             sideLength = 10;
         if (sideLength < 2)
             sideLength = 2;
+
         currentLength = sideLength;
+
         Generate(currentLength);
     }
 
@@ -89,6 +97,30 @@ public class CubesGenerator : MonoBehaviour
                 }
             }
         }
+
+        GenerateFaces(length);
+    }
+
+    void GenerateFaces(int size)
+    {
+        GameObject face1 = Instantiate(Face, new Vector3(0, size, 0), Quaternion.identity);
+        face1.transform.parent = center.transform;
+        faces.Add(face1);
+        GameObject face2 = Instantiate(Face, new Vector3(0, -size, 0), Quaternion.identity);
+        face2.transform.parent = center.transform;
+        faces.Add(face2);
+        GameObject face3 = Instantiate(Face, new Vector3(size, 0, 0), Quaternion.AngleAxis(90, Vector3.forward));
+        face3.transform.parent = center.transform;
+        faces.Add(face3);
+        GameObject face4 = Instantiate(Face, new Vector3(- size, 0, 0), Quaternion.AngleAxis(90, Vector3.forward));
+        face4.transform.parent = center.transform;
+        faces.Add(face4);
+        GameObject face5 = Instantiate(Face, new Vector3(0, 0, size), Quaternion.AngleAxis(90, Vector3.right));
+        face5.transform.parent = center.transform;
+        faces.Add(face5);
+        GameObject face6 = Instantiate(Face, new Vector3(0, 0, - size), Quaternion.AngleAxis(90, Vector3.right));
+        face6.transform.parent = center.transform;
+        faces.Add(face6);
     }
 
     void DeleteCube()
@@ -99,8 +131,12 @@ public class CubesGenerator : MonoBehaviour
         for (int i = 0; i < slices.Count; i++)
             Destroy(slices[i]);
 
+        for (int i = 0; i < faces.Count; i++)
+            Destroy(faces[i]);
+
         rubiksCube.Clear();
         slices.Clear();
+        faces.Clear();
     }
 
     public void Shuffle(int rotationSens = 1)

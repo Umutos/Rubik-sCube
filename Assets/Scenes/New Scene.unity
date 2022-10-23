@@ -1033,7 +1033,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae385d24deaae54f94d6a7585c6759e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateSpeed: 3
 --- !u!1 &1449101765
 GameObject:
   m_ObjectHideFlags: 0
@@ -1249,10 +1248,12 @@ MonoBehaviour:
   XSlice: {fileID: 2851732804981879262, guid: 9281dfe22777749438ce387a5317a7ef, type: 3}
   YSlice: {fileID: 5171147259783780131, guid: b07118e1e4d9b2f4ab815ef76156e072, type: 3}
   ZSlice: {fileID: 4601232263391631438, guid: b4ecde2f9e25f8542a1b0231c8132cc8, type: 3}
+  Face: {fileID: 3907481050809864871, guid: 80b06dc3bbddbc64ab556d3c39743906, type: 3}
   Camera: {fileID: 1465438669}
   slider: {fileID: 200625312}
   sliderValue: {fileID: 168021322}
   sideLength: 3
+  IsRotating: 0
 --- !u!1 &1853704944
 GameObject:
   m_ObjectHideFlags: 0
