@@ -7,6 +7,7 @@ public class Menu : MonoBehaviour
 {
 
     public GameObject ScreenHelp;
+    public GameObject SolveScreen;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,15 @@ public class Menu : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void SolvedOK()
+    {
+        SolveScreen.SetActive(true);
+    }
+    public void SolvedNO()
+    {
+        SolveScreen.SetActive(false);
     }
 
     public void OpenHelp()

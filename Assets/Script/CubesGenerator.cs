@@ -14,6 +14,7 @@ public class CubesGenerator : MonoBehaviour
     [SerializeField] GameObject Camera;
 
     [SerializeField] CubeSolve solver;
+    [SerializeField] Menu menu;
 
     [SerializeField] Slider slider;
     [SerializeField] Text sliderValue;
@@ -190,6 +191,8 @@ public class CubesGenerator : MonoBehaviour
         solver.ClearActions();
         DeleteCube();
         Generate(currentLength);
+        menu.SolvedNO();
+        solver.SolveDone = false;
         IsRotating = false;
     }
 }
