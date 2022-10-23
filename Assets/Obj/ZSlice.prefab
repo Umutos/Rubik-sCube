@@ -112,6 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slice: []
+  TypeOfSlice: 3
 --- !u!114 &2422294489135186845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,3 +126,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slice: {fileID: 4601232263391631429}
+  EndRotation: 0
