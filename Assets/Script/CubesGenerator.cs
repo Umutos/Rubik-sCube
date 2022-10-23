@@ -70,7 +70,7 @@ public class CubesGenerator : MonoBehaviour
                 DeleteCube();
                 Generate(currentLength);
 
-                Camera.transform.position = new Vector3(0, 1, -10 - sideLength * 2);
+                //Camera.transform.position = new Vector3(0, 1, -10 - sideLength * 2);
             }
         }
     }
@@ -175,5 +175,11 @@ public class CubesGenerator : MonoBehaviour
     {
         if(!IsRotating)
             StartCoroutine(ShuffleManager(shuffleLength));
+    }
+
+    public void Restart()
+    {
+        DeleteCube();
+        Generate(currentLength);
     }
 }
