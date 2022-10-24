@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RayCast : MonoBehaviour
 {
+    [SerializeField] CubeSolve solver;
     Camera cam;
     public int face = 0;
     public LayerMask mask;
@@ -22,8 +23,6 @@ public class RayCast : MonoBehaviour
 
     void Update()
     {
-
-
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = 100f;
         mousePos = cam.ScreenToWorldPoint(mousePos);
@@ -72,10 +71,14 @@ public class RayCast : MonoBehaviour
                 cube = hit2.transform.gameObject;
             }
         }
-        if (timer <= 0)
-            Swipe();
-        else
-            timer -= Time.deltaTime;
+
+        if (!solver.generator.IsRotating)
+        {
+            if (timer <= 0)
+                Swipe();
+            else
+                timer -= Time.deltaTime;
+        }
     }
     void Swipe()
     {
@@ -95,23 +98,22 @@ public class RayCast : MonoBehaviour
             switch (face)
             {
                 case 1:
-                    cube.GetComponent<GetSlicesFromCube>().sliceX.GetComponent<RotateSlice>().SliceRotate(1);
-                    
+                    Rotation(cube.GetComponent<GetSlicesFromCube>().sliceX.GetComponent<RotateSlice>(), 1);
                     break;
                 case 2:
-                    cube.GetComponent<GetSlicesFromCube>().sliceX.GetComponent<RotateSlice>().SliceRotate(-1);
+                    Rotation(cube.GetComponent<GetSlicesFromCube>().sliceX.GetComponent<RotateSlice>(), -1);
                     break;
                 case 3:
-                    cube.GetComponent<GetSlicesFromCube>().sliceY.GetComponent<RotateSlice>().SliceRotate(-1);
+                    Rotation(cube.GetComponent<GetSlicesFromCube>().sliceY.GetComponent<RotateSlice>(), -1);
                     break;
                 case 4:
-                    cube.GetComponent<GetSlicesFromCube>().sliceY.GetComponent<RotateSlice>().SliceRotate(-1);
+                    Rotation(cube.GetComponent<GetSlicesFromCube>().sliceY.GetComponent<RotateSlice>(), -1);
                     break;
                 case 5:
-                    cube.GetComponent<GetSlicesFromCube>().sliceY.GetComponent<RotateSlice>().SliceRotate(-1);
+                    Rotation(cube.GetComponent<GetSlicesFromCube>().sliceY.GetComponent<RotateSlice>(), -1);
                     break;
                 case 6:
-                    cube.GetComponent<GetSlicesFromCube>().sliceY.GetComponent<RotateSlice>().SliceRotate(-1);
+                    Rotation(cube.GetComponent<GetSlicesFromCube>().sliceY.GetComponent<RotateSlice>(), -1);
                     break;
             }
             
@@ -125,22 +127,22 @@ public class RayCast : MonoBehaviour
             switch (face)
             {
                 case 1:
-                    cube.GetComponent<GetSlicesFromCube>().sliceX.GetComponent<RotateSlice>().SliceRotate(-1);
+                    Rotation(cube.GetComponent<GetSlicesFromCube>().sliceX.GetComponent<RotateSlice>(), -1);
                     break;
                 case 2:
-                    cube.GetComponent<GetSlicesFromCube>().sliceX.GetComponent<RotateSlice>().SliceRotate(1);
+                    Rotation(cube.GetComponent<GetSlicesFromCube>().sliceX.GetComponent<RotateSlice>(), 1);
                     break;
                 case 3:
-                    cube.GetComponent<GetSlicesFromCube>().sliceY.GetComponent<RotateSlice>().SliceRotate(1);
+                    Rotation(cube.GetComponent<GetSlicesFromCube>().sliceY.GetComponent<RotateSlice>(), 1);
                     break;
                 case 4:
-                    cube.GetComponent<GetSlicesFromCube>().sliceY.GetComponent<RotateSlice>().SliceRotate(1);
+                    Rotation(cube.GetComponent<GetSlicesFromCube>().sliceY.GetComponent<RotateSlice>(), 1);
                     break;
                 case 5:
-                    cube.GetComponent<GetSlicesFromCube>().sliceY.GetComponent<RotateSlice>().SliceRotate(1);
+                    Rotation(cube.GetComponent<GetSlicesFromCube>().sliceY.GetComponent<RotateSlice>(), 1);
                     break;
                 case 6:
-                    cube.GetComponent<GetSlicesFromCube>().sliceY.GetComponent<RotateSlice>().SliceRotate(1);
+                    Rotation(cube.GetComponent<GetSlicesFromCube>().sliceY.GetComponent<RotateSlice>(), 1);
                     break;
             }
            
@@ -155,22 +157,22 @@ public class RayCast : MonoBehaviour
             switch (face)
             {
                 case 1:
-                    cube.GetComponent<GetSlicesFromCube>().sliceZ.GetComponent<RotateSlice>().SliceRotate(1);
+                    Rotation(cube.GetComponent<GetSlicesFromCube>().sliceZ.GetComponent<RotateSlice>(), 1);
                     break;
                 case 2:
-                    cube.GetComponent<GetSlicesFromCube>().sliceZ.GetComponent<RotateSlice>().SliceRotate(1);
+                    Rotation(cube.GetComponent<GetSlicesFromCube>().sliceZ.GetComponent<RotateSlice>(), 1);
                     break;
                 case 3:
-                    cube.GetComponent<GetSlicesFromCube>().sliceX.GetComponent<RotateSlice>().SliceRotate(1);
+                    Rotation(cube.GetComponent<GetSlicesFromCube>().sliceX.GetComponent<RotateSlice>(), 1);
                     break;
                 case 4:
-                    cube.GetComponent<GetSlicesFromCube>().sliceX.GetComponent<RotateSlice>().SliceRotate(-1);
+                    Rotation(cube.GetComponent<GetSlicesFromCube>().sliceX.GetComponent<RotateSlice>(), -1);
                     break;
                 case 5:
-                    cube.GetComponent<GetSlicesFromCube>().sliceZ.GetComponent<RotateSlice>().SliceRotate(-1);
+                    Rotation(cube.GetComponent<GetSlicesFromCube>().sliceZ.GetComponent<RotateSlice>(), -1);
                     break;
                 case 6:
-                    cube.GetComponent<GetSlicesFromCube>().sliceZ.GetComponent<RotateSlice>().SliceRotate(1);
+                    Rotation(cube.GetComponent<GetSlicesFromCube>().sliceZ.GetComponent<RotateSlice>(), 1);
                     break;
             }
             
@@ -184,22 +186,22 @@ public class RayCast : MonoBehaviour
             switch (face)
             {
                 case 1:
-                    cube.GetComponent<GetSlicesFromCube>().sliceZ.GetComponent<RotateSlice>().SliceRotate(-1);
+                    Rotation(cube.GetComponent<GetSlicesFromCube>().sliceZ.GetComponent<RotateSlice>(), -1);
                     break;
                 case 2:
-                    cube.GetComponent<GetSlicesFromCube>().sliceZ.GetComponent<RotateSlice>().SliceRotate(-1);
+                    Rotation(cube.GetComponent<GetSlicesFromCube>().sliceZ.GetComponent<RotateSlice>(), -1);
                     break;
                 case 3:
-                    cube.GetComponent<GetSlicesFromCube>().sliceX.GetComponent<RotateSlice>().SliceRotate(-1);
+                    Rotation(cube.GetComponent<GetSlicesFromCube>().sliceX.GetComponent<RotateSlice>(), -1);
                     break;
                 case 4:
-                    cube.GetComponent<GetSlicesFromCube>().sliceX.GetComponent<RotateSlice>().SliceRotate(1);
+                    Rotation(cube.GetComponent<GetSlicesFromCube>().sliceX.GetComponent<RotateSlice>(), 1);
                     break;
                 case 5:
-                    cube.GetComponent<GetSlicesFromCube>().sliceZ.GetComponent<RotateSlice>().SliceRotate(1);
+                    Rotation(cube.GetComponent<GetSlicesFromCube>().sliceZ.GetComponent<RotateSlice>(), 1);
                     break;
                 case 6:
-                    cube.GetComponent<GetSlicesFromCube>().sliceZ.GetComponent<RotateSlice>().SliceRotate(-1);
+                    Rotation(cube.GetComponent<GetSlicesFromCube>().sliceZ.GetComponent<RotateSlice>(), -1);
                     break;
             }
             
@@ -208,6 +210,12 @@ public class RayCast : MonoBehaviour
             currentSwipe = Vector2.zero;
         }
 
+    }
+
+    void Rotation(RotateSlice slice, int sens)
+    {
+        solver.AddCubeAction(slice, sens);
+        slice.SliceRotate(sens);
     }
 
     bool LeftSwipe(Vector2 swipe)
