@@ -188,8 +188,11 @@ public class CubesGenerator : MonoBehaviour
 
     public void Shuffle()
     {
-        if(!IsRotating)
+        menu.SolvedNO();
+        solver.SolveDone = false;
+        if (!IsRotating)
             StartCoroutine(ShuffleManager(shuffleLength));
+        
     }
 
     public void Restart()
