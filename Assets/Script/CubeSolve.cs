@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CubeSolve : MonoBehaviour
 {
-    [SerializeField] CubesGenerator generator;
+    public CubesGenerator generator;
     [SerializeField] Menu menu;
 
     public bool SolveDone = false;
@@ -25,7 +25,7 @@ public class CubeSolve : MonoBehaviour
         for (int i = slices.Count - 1; i >= 0; i--)
         {
             slices[i].SliceRotate(senses[i] * -1);
-
+            Debug.Log("action");
             yield return new WaitUntil(() => slices[i].EndRotation == true);
 
             slices[i].EndRotation = false;

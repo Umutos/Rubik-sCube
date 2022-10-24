@@ -23,7 +23,7 @@ public class CameraZoom : MonoBehaviour
     {
         float scrollData;
         scrollData = Input.GetAxis("Mouse ScrollWheel");
-        Debug.Log(scrollData);
+        //Debug.Log(scrollData);
 
         if (OrthoORPerspec == true)
         {

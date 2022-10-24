@@ -47,6 +47,10 @@ public class RotateSlice : MonoBehaviour
         UnlockCubes();
 
         EndRotation = true;
+
+        yield return new WaitForSecondsRealtime(0.2f);
+
+        EndRotation = false;
     }
 
     public void SliceRotate(int rotationSens = 1)
